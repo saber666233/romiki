@@ -1,0 +1,27 @@
+Private Sub Btn_Test_OnClick(sender As Object, control As IRibbonControl, pressed As Boolean) Handles Btn_Test.OnClick
+
+Dim Sheet As Excel.Worksheet
+
+Sheet = DirectCast(ExcelApp.ActiveSheet, Excel.Worksheet)
+
+Sheet.Range("A1").Font.Size = 16
+
+Sheet.Range("A1").RowHeight = 30
+
+Sheet.Range("A1").HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+
+
+
+Sheet.Range("A1:A4").Merge()
+
+Sheet.Range("A3:D3").Value = {"Type", "Test", "Remark", "Others"}
+
+With Sheet.Range("F3").Validation
+
+.Add(Type:=Excel.XlDVType.xlValidateList, AlertStyle:=Excel.XlDVAlertStyle.xlValidAlertWarning, Operator:=Excel.XlFormatConditionOperator.xlBetween, Formula1:="Default,PNG,SVG")
+
+.InCellDropdown = True
+
+End With
+
+End Sub
